@@ -20,6 +20,25 @@
 <body>
     <h1>PEOPLE IN THE WOLRD</h1>
     <div id="app" class="fotos"></div>
+    <script type="text/babel">
+
+    const $app = document.getElementById('app');
+    const h = React.createElement;
+
+        const Avatar = params =>{
+            const src=`https://randomuser.me/api/portraits/men/${params.id}.jpg`;
+            return <img src={src}/>
+        };
+        ReactDOM.render(
+            <div>
+                <Avatar id= {10}/>,
+                <Avatar id= {5}/>
+            </div>, 
+            $app
+        );
+
+    
+    </script>
 </body>
 <script src="./main.js"></script>
 </html>
