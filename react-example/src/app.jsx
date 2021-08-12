@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useRef} from 'react';
 import { TodoList } from './components/TodoList';
+import {v4 as uuidv4} from 'uuid';
 
 
 export function App(){
@@ -9,21 +10,34 @@ export function App(){
 
     const todoTaskRef = useRef();
 
+    const toggleTodo = (id)=>{
+        const newTodos = [...todos];
+        const todo = newTodos.find((todo)=> todo.id === id);
+        todo.completed = !todo.completed;
+        setTodos(newTodos);
+    };
+
     const handleTodoAdd =()=>{
         const task = todoTaskRef.current.value;
         if(task === '') return ;
 
-        /*setTodos((prevTodos) => {
-            return [...prevTodos, {id, task, compled: false}]
-        })*/
+        setTodos((prevTodos) => {
+            return [...prevTodos, {id: uuidv4(), task, completed: false}]
+        })
+        todoTaskRef.current.value = null;
     }
 
+
     return (
-    <Fragment>
-        <TodoList todos={todos}/>
+    <>
+        <TodoList todos={todos} toggleTodo={toggleTodo}/>
         <input ref={todoTaskRef} type='text' placeholder= 'Nueva Tarea'/>
         <button onClick={handleTodoAdd}>➕</button>
         <button>🗑</button>
-    </Fragment>
+        <div>
+        Te quedan {todos.filter((todo) => !todo.completed).length} tareas por
+        terminar
+      </div>
+    </>
     );
-}
+}           
