@@ -25,6 +25,11 @@ export function App(){
             return [...prevTodos, {id: uuidv4(), task, completed: false}]
         })
         todoTaskRef.current.value = null;
+    };
+
+    const handleClearAll = () =>{
+        const newTodos = todos.filter((todo)=>!todo.completed);
+        setTodos(newTodos);
     }
 
 
@@ -33,7 +38,7 @@ export function App(){
         <TodoList todos={todos} toggleTodo={toggleTodo}/>
         <input ref={todoTaskRef} type='text' placeholder= 'Nueva Tarea'/>
         <button onClick={handleTodoAdd}>➕</button>
-        <button>🗑</button>
+        <button onClick={handleClearAll} >🗑</button>
         <div>
         Te quedan {todos.filter((todo) => !todo.completed).length} tareas por
         terminar
