@@ -31,12 +31,12 @@ export function App(){
         const newTodos = todos.filter((todo)=>!todo.completed);
         setTodos(newTodos);
     }
-
+ 
 
     return (
     <>
         <TodoList todos={todos} toggleTodo={toggleTodo}/>
-        <input ref={todoTaskRef} type='text' placeholder= 'Nueva Tarea'/>
+        <input ref={todoTaskRef} type='text' placeholder='Nueva Tarea'/>
         <button onClick={handleTodoAdd}>➕</button>
         <button onClick={handleClearAll} >🗑</button>
         <div>
@@ -45,4 +45,4 @@ export function App(){
       </div>
     </>
     );
-}           
+}  
